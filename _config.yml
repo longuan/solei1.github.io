@@ -1,0 +1,61 @@
+
+# SEO settings
+title: "dragon"
+title2: "power" # default: ""
+# description: "给我光明的欺骗，让我一直都向前"
+# keywords: "Jekyll, theme, free, download, SEO, blog, web, minimalist, thinkspace"
+url: https://solei1.github.io # site url
+baseurl: "" # apply repo name if use it under gh-pages branch
+# baseurl: null # apply null if repo name is something like username.github.io
+
+# google_analytics: UA-XXXXX-XX
+repo: https://github.com/solei1/solei1.github.io
+# disqus_shortname: "hnbloggithub"
+# twitter_username: "HeiswayiNrird"
+comments: false
+
+# Build settings
+permalink   : /:year/:title/
+markdown    : kramdown
+highlighter : rouge
+
+source: ./
+destination: ./_site
+
+# Sass configuration
+sass:
+  sass_dir: assets/scss
+  style: compressed # expanded
+
+# Author settings
+author:
+  name     : "solei1"
+  # job      : "Software Engineer"
+  bio      : "面对大河我无限惭愧 年华虚度 空有一身疲倦"
+  thumb    : /assets/images/author.jpg
+  email    : beatjean1314@gmail.com
+  url      : https://solei1.github.io
+  github   : https://github.com/solei1
+  # twitter  : http://twitter.com/HeiswayiNrird
+  # facebook : https://www.facebook.com/heiswayi.nrird
+  # linkedin : http://linkedin.com/in/nrird
+
+# social settings
+og_locale: "en_US"
+# twitter_card: "summary_large_image"
+# twitter_site: "@HeiswayiNrird"
+
+gems:
+  - bourbon
+  - jekyll-paginate
+
+# navbar pages
+navbar:
+  - slug : about
+    title: About
+  - slug : links
+    title: Links
+  - slug : others
+    title: Others
+
+exclude: ["gulp", "node_modules", "bower", "bower_components", "config.rb", "src", "Gemfile", "Gemfile.lock", ".rvmrc", ".rbenv-version", "package.json", "gulpfile.js", "README.md", "Rakefile", "changelog.md"]
