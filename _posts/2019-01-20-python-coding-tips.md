@@ -15,6 +15,12 @@ title: "python编程技巧积累"
     - [在列表头部操作多的场景用 deque 模块](#在列表头部操作多的场景用-deque-模块)
     - [使用集合字典来判断成员是否存在](#使用集合字典来判断成员是否存在)
     - [最好不用“获取许可”，也无需“要求原谅”](#最好不用获取许可也无需要求原谅)
+- [对于函数return的技巧](#)
+    - [单个函数不要返回多种数据类型](#单个函数不要返回多种数据类型)
+    - [使用partial构造新函数](#使用partial构造新函数)
+    - [尽量使用异常而不是返回结果处理错误](#尽量使用异常而不是返回结果处理错误)
+    - [合理使用空对象模式](#合理使用空对象模式)
+    - [尽量不使用递归](#尽量不使用递归)
 - [参考](#参考)
 
 
@@ -252,8 +258,35 @@ def counter_by_collections(l):
 - 在字典获取成员时指定默认值：dict.get(key, default_value)
 - 对列表进行不存在的切片访问不会抛出 IndexError 异常：["foo"][100:200]
 
+## 对于函数return的技巧
+
+来自[Python 工匠：让函数返回结果的技巧](https://github.com/piglei/one-python-craftsman/blob/master/zh_CN/5-function-returning-tips.md)
+
+
+### 单个函数不要返回多种数据类型
+
+### 使用partial构造新函数
+
+`partial(func, *args, **kwargs)`
+
+### 尽量使用异常而不是返回结果处理错误
+
+### 合理使用空对象模式
+
+当我们使用返回结果或者异常处理错误，上层函数调用的时候会频繁的使用if/else或者try/except，为了减少这种情况的出现，可以使用合理的“空对象”来代替判断。
+
+### 尽量不使用递归
+
+python对递归的支持非常有限，而且debug的时候非常痛苦，我之前就遇到过一个递归的问题，折磨了我很久，后来发现是因为——递归函数的每个逻辑分支都要有返回值，不能返回None。
+
+还有几点：
+
+- python不支持“尾递归优化”
+- 递归最大层数有限制`sys.getrecursionlimit()`
+- 尝试使用`functools.lru_cache`等缓存工具函数来降低递归层数
 
 ## 参考
 
+- https://github.com/piglei/one-python-craftsman
 - https://realpython.com/python-f-strings/#old-school-string-formatting-in-python
 - https://medium.com/@meghamohan/mutable-and-immutable-side-of-python-c2145cf72747
