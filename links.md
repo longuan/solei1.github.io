@@ -18,3 +18,4 @@ permalink: /links/
 - Listen 1 音乐播放器(Firefox和chrome插件)
 - [windows iso download](http://windowsiso.net/)
 - [编程字体](https://app.programmingfonts.org)
+- [搜论文](https://dblp.org)
