@@ -63,7 +63,7 @@ title: "构造函数和析构函数指南"
 
 - **函数签名**
   - 名称。构造函数的名称和类名相同，析构函数的名称是"~"后跟类名。
-  - 返回值。构造函数的析构函数都有没返回值。
+  - 返回值。构造函数和析构函数都没有返回值。
   - 参数。构造函数可接受除了此类实例外的任意参数，析构函数不能带有参数。
 
 
@@ -358,6 +358,83 @@ Defaulted 函数特性仅适用于类的六个特殊成员函数，且该特殊�
 6.移动拷贝函数
 
 C++规定，一旦程序员实现了这些函数的自定义版本，则编译器不会再自动生产默认版本。注意只是不自动生成默认版本，当然还是可手动生成默认版本的。当我们自己定义了待参数的构造函数时，我们最好是声明不带参数的版本以完成无参的变量初始化，此时编译是不会再自动提供默认的无参版本了。我们可以通过使用关键字default来控制默认构造函数的生成，显式地指示编译器生成该函数的默认版本。
+
+
+
+### initializer_list
+
+C++11新特性。
+
+initializer_list 是列表初始化的方式，用花括号初始化器列表初始化一个对象，其中对应构造函数接受一个 `std::initializer_list` 参数。
+
+```c++
+#include <iostream>
+#include <vector>
+#include <initializer_list>
+
+using namespace std;
+
+template <class T>
+struct S {
+    vector<T> v;
+    S(initializer_list<T> l) : v(l){
+        cout << "constructed with a " << l.size() << "-elements lists" << endl;
+    }
+    void append(std::initializer_list<T> l) {
+        v.insert(v.end(), l.begin(), l.end());
+    }
+
+    pair<const T*, size_t> c_arr() const{
+        return {&v[0], v.size()};
+    }
+
+};
+
+
+template <typename T>
+void templated_fn(T arg) {
+    for (auto a : arg)
+        cout << a << " ";
+    cout << endl;
+}
+
+int main() {
+    S<int> s = {1, 2, 3, 4, 5}; //automatically construct a initializer_list 
+                                // object and copy it
+    s.append({6, 7 , 8});         //list-initialization in function call
+
+    cout << "The vector size is now " << s.c_arr().second << " ints:" << endl;
+
+    for (auto n : s.v)
+        cout << ' ' << n;
+    cout << endl;
+
+    cout << "range-for over brace-init-list: " << endl;
+    
+    for (auto x : {-1, -2, 03})   //// the rule for auto makes this ranged for work
+        cout << x << " ";
+    cout << endl;
+
+    auto al = {10, 11, 12};  //special rule for auto
+
+    cout << "The list bound to auto has size() = " << al.size() << endl;
+
+
+    //templated_fn({1, 2, 3});   //compiler error! "{1, 2, 3}" is not an expressionit has no type, and so T cannot be duduced.
+
+    templated_fn<initializer_list<int> > ({7, 8, 9}); //ok
+    templated_fn<vector<int> >({3, 5, 7});           //also ok
+
+    return 0;
+}
+```
+
+
+
+一个initializer_list当出现在以下两种情况的被自动构造：
+
+1. 当初始化的时候使用的是大括号初始化，被自动构造。包括函数调用时和赋值
+2. 当涉及到for（initializer： list）,list被自动构造成initializer_list对象
 
 
 
