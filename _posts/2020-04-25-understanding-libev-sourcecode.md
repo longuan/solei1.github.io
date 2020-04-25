@@ -666,7 +666,7 @@ typedef struct
 
 ​        既然ANFD是文件描述符信息结构体，怎么没在结构体里看到fd变量？这是因为fd已经作为anfds数组的下标，anfds[fd] = ANFD。这样可以快速找到与指定fd相关的所有watcher。综上，anfds结构如图：
 
-![](C:\Users\zzeo\Desktop\git\solei1.github.io\_posts\2020-04-23-understanding-libev-sourcecode.assets\libev-anfds-arch.png)
+![](./2020-04-25-understanding-libev-sourcecode.assets/libev-anfds-arch.png)
 
 
 
