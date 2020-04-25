@@ -4,6 +4,30 @@ title: "libev源码阅读与剖析"
 
 
 
+- [简介](#简介)
+  - [与Reactor模式的关系](#与Reactor模式的关系)
+  - [watcher的“继承”与“封装”](#watcher的继承与封装)
+  - [ev_p, ev_a这四个宏](#evpevp和evaeva这四个宏)
+- [watcher简介](#watcher简介)
+  - [支持的事件](#支持的事件)
+  - [支持的event](#支持的event)
+  - [watcher的状态、对watcher的通用操作](#watcher的状态对watcher的通用操作)
+- [ev_loop](evloop)
+  - [创建](#创建)
+  - [运行](#运行)
+    - [ev_run函数](#evrun函数)
+  - [backend](#backend)
+  - [epollpoll](#epollpoll)
+- [io watcher分析](#io-watcher分析)
+  - [anfds](#anfds)
+  - [ev_io_start 函数](#eviostart-函数)
+- [其他](#其他)
+  - [array_needsize 宏](#arrayneedsize-宏)
+  - [pendings 数组](#pendings-数组)
+- [参考](#参考)
+
+
+
 ## 简介
 
 
