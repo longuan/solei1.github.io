@@ -7,6 +7,8 @@ permalink: /others/
 
 ## 美剧
 
+- Dark (暗黑)
+- Silicon Valley (硅谷)
 - Peaky Blinders (浴血黑帮)
 - American Horror Story (美国恐怖故事) 
 - This Is Us (我们这一天)  
