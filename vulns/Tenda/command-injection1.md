@@ -1,6 +1,6 @@
 
 
-I found a command injection vulnerability in the Tenda router's webserver. While processing the `guestuser` parameters for a post request to `/goform/SetStaticRouteCfg`, the payload is directly stored into NVRAM. When a post request is sent again to `/goform/SetStaticRouteCfg`, the payload is read from NVRAM and executed. It's like Second-Order SQL Injection Attack. The details are shown below:
+I found a command injection vulnerability in the Tenda router's webserver. While processing the `guestuser` parameters for a post request to `/goform/SetSambaCfg`, the payload is directly stored into NVRAM. When a post request is sent again to `/goform/SetSambaCfg`, the payload is read from NVRAM and executed. It's like Second-Order SQL Injection Attack. The details are shown below:
 
 
 ## Overviw
@@ -62,5 +62,3 @@ print(req.text)
 ![image](/vulns/Tenda/images/poc-3-1.png)
 
 
-
-p.s.Given the vendor's security, we only provide parts of the URL.
