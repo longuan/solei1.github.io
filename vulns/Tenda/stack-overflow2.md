@@ -3,7 +3,7 @@
 I found a stack-based buffer overflow vulnerability in the Tenda router's webserver. While processing the `list` parameters for a post request to `/goform/SetVirtualServerCfg`, the value is directly `sscanf` to local variables placed on the stack, which can override the return address of the function. The attackers can construct an exploit to execute arbitrary binary code. The details are shown below:
 
 
-## Overviw
+## Overview
 
 Vendor: Tenda
 

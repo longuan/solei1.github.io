@@ -1,9 +1,9 @@
 
 
-I found a stack-based buffer overflow vulnerability in the Tenda router's webserver. While processing the `list` parameters for a post request to `/goform/SetStaticRouteCfg`, the value is directly `sscanf` to local variables placed on the stack, which can override the return address of the function. The attackers can construct an exploit to execute arbitrary binary code. This information about this vulnerability is shown below:
+I found a stack-based buffer overflow vulnerability in the Tenda router's webserver. While processing the `list` parameters for a post request to `/goform/SetStaticRouteCfg`, the value is directly `sscanf` to local variables placed on the stack, which can override the return address of the function. The attackers can construct an exploit to execute arbitrary binary code. The information about this vulnerability is shown below:
 
 
-## Overviw
+## Overview
 
 Vendor: Tenda
 
@@ -22,7 +22,7 @@ Discoverer: longuan@iie
 
 ## Details
 
-1. `websGetVar()` retrieves the content of `list` from HTTP POST request, then pass it to `sub_785D0()`.
+1. `websGetVar()` retrieves the content of `list` from a HTTP POST request, then pass it to `sub_785D0()`.
 
 ![image](/vulns/Tenda/images/details-1-1.png)
 
