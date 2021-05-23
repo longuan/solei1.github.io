@@ -1,12 +1,16 @@
 ---
 layout: page
-title: 君子以独立不惧, 遁世无闷
+title: Others
 permalink: /others/
 ---
 
 
-## 美剧
+*美剧* :
 
+- Love, Death & Robots (爱，死亡和机器人)
+- Prison Break (越狱)
+- The Mandalorian (曼达洛人)
+- Raised by Wolves (异星灾变)
 - Dark (暗黑)
 - Silicon Valley (硅谷)
 - Peaky Blinders (浴血黑帮)
